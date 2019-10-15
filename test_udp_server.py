@@ -1,9 +1,6 @@
-
 import socket
 
 import time
-
-
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
@@ -20,7 +17,6 @@ server.bind(("", 44444))
 message = b"your very important message"
 
 while True:
-
     server.sendto(message, ('<broadcast>', 37020))
 
     print("message sent!")
