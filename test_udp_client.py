@@ -1,4 +1,5 @@
 import socket
+import random
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 client2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
@@ -10,8 +11,10 @@ client.bind(("", 37020))
 client2.bind(("", 37021))
 
 while True:
+    hash = random.randint(0, 100)
+
     data, addr = client.recvfrom(1024)
-    print("received message: %s" % data)
+    print("received message:{}{}".format(data, hash))
 
     data, addr = client2.recvfrom(1024)
 

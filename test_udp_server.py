@@ -1,6 +1,8 @@
 import socket
 
 import time
+import random
+import uuid
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
@@ -17,8 +19,10 @@ server.bind(("", 44444))
 message = b"your very important message"
 
 while True:
+    hash = uuid.uuid4().hex
+
     server.sendto(message, ('<broadcast>', 37020))
-    server.sendto(message+message, ('<broadcast>', 37021))
+    server.sendto(str(hash).encode(), ('<broadcast>', 37021))
 
     print("message sent!")
 
