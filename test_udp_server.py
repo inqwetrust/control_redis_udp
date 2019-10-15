@@ -16,7 +16,7 @@ server.settimeout(0.2)
 
 server.bind(("", 44444))
 
-message = b"your very important message"
+message = b"your very important message" * 100
 
 while True:
     hash = uuid.uuid4().hex

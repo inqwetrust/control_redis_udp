@@ -13,10 +13,10 @@ client2.bind(("", 37021))
 while True:
     hash = random.randint(0, 100)
 
-    data, addr = client.recvfrom(1024)
+    data, addr = client.recvfrom(10240)
     print("received message:{}{}".format(data, hash))
 
-    data, addr = client2.recvfrom(1024)
+    data, addr = client2.recvfrom(10240)
 
     print("received message: %s" % data)
     if len(data) > 1:
