@@ -1,3 +1,5 @@
+import codecs
+import pickle
 import socket
 
 import time
@@ -19,10 +21,12 @@ server.bind(("", 44444))
 message = b"your very important message" * 100
 
 while True:
-    hash = uuid.uuid4().hex
+    hash = [uuid.uuid4().hex for x in range(100)]
+    pickled = pickle.dumps(hash)
 
+    # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
     server.sendto(message, ('<broadcast>', 37020))
-    server.sendto(str(hash).encode(), ('<broadcast>', 37021))
+    server.sendto(pickled, ('<broadcast>', 37021))
 
     print("message sent!")
 
