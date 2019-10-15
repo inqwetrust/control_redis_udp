@@ -21,7 +21,7 @@ server.bind(("", 44444))
 message = b"your very important message" * 100
 
 while True:
-    hash = [uuid.uuid4().hex for x in range(100)]
+    hash = [uuid.uuid4().hex for x in range(110)]
     pickled = pickle.dumps(hash)
 
     # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()

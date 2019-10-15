@@ -19,6 +19,6 @@ while True:
 
     data, addr = client2.recvfrom(10240)
 
-    print("received message: %s" % pickle.loads(data))
+    print("received message: %s" % pickle.loads(data)[hash])
     if len(data) > 1:
         pass
