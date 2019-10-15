@@ -1,14 +1,20 @@
 import socket
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
+client2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 
 client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+client2.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 client.bind(("", 37020))
+client2.bind(("", 37021))
 
 while True:
     data, addr = client.recvfrom(1024)
+    print("received message: %s" % data)
+
+    data, addr = client2.recvfrom(1024)
 
     print("received message: %s" % data)
     if len(data) > 1:
-        break
+        pass

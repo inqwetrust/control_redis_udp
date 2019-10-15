@@ -18,6 +18,7 @@ message = b"your very important message"
 
 while True:
     server.sendto(message, ('<broadcast>', 37020))
+    server.sendto(message+message, ('<broadcast>', 37021))
 
     print("message sent!")
 
