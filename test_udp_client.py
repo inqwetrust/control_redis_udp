@@ -10,3 +10,5 @@ while True:
     data, addr = client.recvfrom(1024)
 
     print("received message: %s" % data)
+    if len(data) > 1:
+        break
