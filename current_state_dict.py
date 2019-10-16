@@ -28,9 +28,9 @@ def compare_state_dict(last_state_dict, next_state_dict):
     state_change_dict = {}
     for key in dict_key:
         if last_state_dict[key] == next_state_dict[key]:
-            state_change_dict[key] = True
+            state_change_dict[key] = True  # remain same
         else:
-            state_change_dict[key] = False
+            state_change_dict[key] = False  # modified
     return state_change_dict
 
 
