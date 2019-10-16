@@ -12,6 +12,7 @@ client2.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 client.bind(("", 37020))
 client2.bind(("", 37021))
 last_state_dict = current_state_dict.get_current_state_dict()
+local_state_dict = last_state_dict
 while True:
     # hash = random.randint(0, 100)
 
@@ -23,9 +24,9 @@ while True:
     change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
     if last_state_dict["get_uuid"] == state_dict["get_uuid"]:
         continue
-    if last_state_dict["get_server_ip"] != state_dict["get_server_ip"]:
+    if local_state_dict["get_server_ip"] == last_state_dict["get_server_ip"] and False:  # ignore checking until deploy
         continue
-    if last_state_dict["get_server_subnet"] != state_dict["get_server_subnet"]:
+    if local_state_dict["get_server_subnet"] != state_dict["get_server_subnet"]:
         continue
     if change_result["get_cursor_pos"] == False:  # action
         print("mouse moved", state_dict["get_cursor_pos"])
