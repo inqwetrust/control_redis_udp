@@ -30,7 +30,13 @@ while True:
         continue
     if change_result["get_cursor_pos"] == False:  # action
         print("mouse moved", state_dict["get_cursor_pos"])
-    if change_result["get_cursor_pos"] == False:  # action
-        print("mouse moved")
+    if change_result["key_caplock_on"] == False:  # action
+        print("CAPSLOCK:", state_dict["key_caplock_on"])
+    if change_result["key_scrolllock_on"] == False:  # action
+        print("SCROLLLOCK:", state_dict["key_scrolllock_on"])
+    if change_result["key_numlock_on"] == False:  # action
+        print("NUMLOCK:", state_dict["key_numlock_on"])
+    if change_result["get_read_text_line"] == False:  # action
+        print("TEXT_LINE:", state_dict["get_read_text_line"])
     print(change_result)
     last_state_dict = state_dict
