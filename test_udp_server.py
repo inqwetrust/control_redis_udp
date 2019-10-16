@@ -1,9 +1,7 @@
-import codecs
 import pickle
 import socket
 
 import time
-import random
 import uuid
 
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
