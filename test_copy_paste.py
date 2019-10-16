@@ -6,5 +6,10 @@ def text_copy():
     pyperclip.copy("abc")
 
 
-def test_paste():
+def text_paste():
     pyautogui.hotkey('ctrl', 'v')
+
+
+if __name__ == '__main__':
+    text_copy()
+    text_paste()
