@@ -20,7 +20,16 @@ while True:
 
     data, addr = client2.recvfrom(10240)
     state_dict = pickle.loads(data)
-    print(current_state_dict.compare_state_dict(last_state_dict, state_dict))
+    change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
+    if last_state_dict["get_uuid"] == state_dict["get_uuid"]:
+        continue
+    if last_state_dict["get_server_ip"] != state_dict["get_server_ip"]:
+        continue
+    if last_state_dict["get_server_subnet"] != state_dict["get_server_subnet"]:
+        continue
+    if change_result["get_cursor_pos"] == False:  # action
+        print("mouse moved", state_dict["get_cursor_pos"])
+    if change_result["get_cursor_pos"] == False:  # action
+        print("mouse moved")
+    print(change_result)
     last_state_dict = state_dict
-    if len(data) > 1:
-        pass
