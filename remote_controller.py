@@ -26,4 +26,4 @@ while True:
 
     print("message sent!")
 
-    time.sleep(1)
+    time.sleep(0.7)
