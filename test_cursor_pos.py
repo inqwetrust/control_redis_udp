@@ -12,7 +12,8 @@ def queryMousePosition():
     return {"x": pt.x, "y": pt.y}
 
 
-while True:
-    pos = queryMousePosition()
-    print(pos)
-    time.sleep(1)
+if __name__ == '__main__':
+    while True:
+        pos = queryMousePosition()
+        print(pos)
+        time.sleep(1)
