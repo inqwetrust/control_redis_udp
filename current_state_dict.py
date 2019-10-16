@@ -23,6 +23,21 @@ def get_current_state_dict():
     return state_dict
 
 
+def compare_state_dict(last_state_dict, next_state_dict):
+    dict_key = [k for k, v in last_state_dict.items()]
+    state_change_dict = {}
+    for key in dict_key:
+        if last_state_dict[key] == next_state_dict[key]:
+            state_change_dict[key] = True
+        else:
+            state_change_dict[key] = False
+    return state_change_dict
+
+
 if __name__ == '__main__':
-    # state_dict["get_uuid"] = get_uuid.get_uuid()
-    print(get_current_state_dict())
+    import time
+    last_state_dict = get_current_state_dict()
+    print("make change now")
+    time.sleep(3)
+    next_state_dict = get_current_state_dict()
+    print(compare_state_dict(last_state_dict, next_state_dict))
