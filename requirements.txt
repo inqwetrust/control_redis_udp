@@ -3,3 +3,4 @@ pyautogui
 # vncdotool
 pyinstaller
 py-cpuinfo
+qrcode
