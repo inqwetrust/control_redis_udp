@@ -16,6 +16,7 @@ client.bind(("", 37020))
 client2.bind(("", 37021))
 last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
+print(local_state_dict)
 while True:
     # hash = random.randint(0, 100)
     try:

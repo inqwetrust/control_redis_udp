@@ -5,6 +5,16 @@ import get_mac_addr
 import get_key_state
 import get_read_text_line
 
+import get_cpu_model
+import get_ram_info
+import get_disk_info
+import get_display
+
+cpu = get_cpu_model.get_cpu_brand()
+ram = get_ram_info.get_ram_info()
+disk = get_disk_info.get_disk_info()
+display = get_display.get_display()
+
 
 def get_current_state_dict():
     state_dict = {}
@@ -20,6 +30,12 @@ def get_current_state_dict():
     state_dict["key_numlock_on"] = get_key_state.get_numlock_state() == 1
     state_dict["key_numlock_off"] = get_key_state.get_numlock_state() == 0
     state_dict["get_read_text_line"] = get_read_text_line.get_read_text_line()
+
+    state_dict["cpu"] = cpu
+    state_dict["ram"] = ram
+    state_dict["disk"] = disk
+    state_dict["display"] = display
+
     return state_dict
 
 
@@ -36,6 +52,7 @@ def compare_state_dict(last_state_dict, next_state_dict):
 
 if __name__ == '__main__':
     import time
+
     last_state_dict = get_current_state_dict()
     print("make change now")
     time.sleep(3)
