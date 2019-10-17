@@ -26,7 +26,7 @@ while True:
     change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
     if last_state_dict["get_uuid"] == state_dict["get_uuid"]:
         continue
-    if local_state_dict["get_server_ip"] == last_state_dict["get_server_ip"] and True:  # False = ignore checking
+    if local_state_dict["get_server_ip"] == last_state_dict["get_server_ip"] and False:  # False = ignore checking
         continue
     if local_state_dict["get_server_subnet"] != state_dict["get_server_subnet"]:
         continue
