@@ -4,6 +4,7 @@ import socket
 import random
 import current_state_dict
 import pyautogui
+
 pyautogui.FAILSAFE = False
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
