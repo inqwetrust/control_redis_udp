@@ -2,7 +2,6 @@ import os
 from ctypes import *
 from ctypes.wintypes import *
 
-from subprocess import check_output
 
 class MEMORYSTATUS(Structure):
     _fields_ = [
