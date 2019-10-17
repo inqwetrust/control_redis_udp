@@ -13,7 +13,7 @@ def get_ram_info():
         if not line:
             break
     result = [result.count("{}".format(ram * 1024 * 1048576)) for ram in range(1, 32 + 1, 1)]
-    result = [str(result[r]) + "x"+ "{}".format(r+1) for r in range(0,32 + 0, 1)]
+    result = [str(result[r]) + "x" + "{}".format(r + 1) for r in range(0, 32 + 0, 1)]
     result = [r if r[0] != '0' else None for r in result]
     result = list(filter(None, result))
     return result
