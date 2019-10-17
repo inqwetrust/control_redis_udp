@@ -2,7 +2,6 @@ import os
 import subprocess
 
 
-
 def get_disk_info():
     command = "wmic diskdrive get Size"
     pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -20,8 +19,7 @@ def get_disk_info():
     result = result.split()
     result = [float(size) for size in result]
     result = [round(size / 1024 / 1048576, 0) for size in result]
-    print(result)
-    result = [result.count(ram) for ram in range(1, 128 + 1, 1)]
+    # result = [result.count(ram) for ram in range(1, 128 + 1, 1)]
     return result
 
 
