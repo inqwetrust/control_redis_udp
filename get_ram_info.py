@@ -1,27 +1,19 @@
 import os
-from ctypes import *
-from ctypes.wintypes import *
+import subprocess
 
 
-class MEMORYSTATUS(Structure):
-    _fields_ = [
-        ('dwLength', DWORD),
-        ('dwMemoryLoad', DWORD),
-        ('dwTotalPhys', DWORD),
-        ('dwAvailPhys', DWORD),
-        ('dwTotalPageFile', DWORD),
-        ('dwAvailPageFile', DWORD),
-        ('dwTotalVirtual', DWORD),
-        ('dwAvailVirtual', DWORD),
-    ]
-
-
-def winmem():
-    x = MEMORYSTATUS()
-    windll.kernel32.GlobalMemoryStatus(byref(x))
-    return x
+def get_ram_info():
+    command = "wmic memorychip get /VALUE |findstr \"Capacity\""
+    pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    result = ""
+    while True:
+        line = pipe.stdout.readline()
+        if line:
+            result += str(line)
+        if not line:
+            break
+    return result
 
 
 if __name__ == '__main__':
-    print(winmem().dwTotalPhys)
-    print(os.system("wmic memorychip get /VALUE |findstr \"Capacity\""))
+    print(get_ram_info())
