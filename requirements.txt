@@ -2,3 +2,4 @@ pyperclip
 pyautogui
 # vncdotool
 pyinstaller
+py-cpuinfo
