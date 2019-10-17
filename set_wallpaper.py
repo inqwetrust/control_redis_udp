@@ -26,7 +26,7 @@ def set_wallpaper(message):
     d = ImageDraw.Draw(img)
     # now = datetime.datetime.now().isoformat()
     d.text((1400, 10), message, fill=(255, 255, 0))
-    qr.add_data('{}, {}'.format(screen_size, message))
+    qr.add_data('{}'.format(message))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
     img.paste(qr_code_img, (1200, 50))
