@@ -12,7 +12,13 @@ def get_cpu_brand():
         if not line:
             break
     result = result.strip()
-    result = result[54:-18]
+    result = result.replace('  ', '')
+    result = result.replace('b', '')
+    result = result.replace('\\r', '')
+    result = result.replace('\\n', '')
+    result = result.replace('\'', '')
+    result = result.replace('Name', '')
+    result = result.strip()
     return result
 
 
