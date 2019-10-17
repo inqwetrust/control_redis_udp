@@ -2,28 +2,45 @@ import pickle
 import socket
 import current_state_dict
 import time
+from multiprocessing import Process
 
-server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
-server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+def controller():
+    server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 
-# Set a timeout so the socket does not block
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
-# indefinitely when trying to receive data.
+    # Set a timeout so the socket does not block
 
-server.settimeout(0.2)
+    # indefinitely when trying to receive data.
 
-server.bind(("", 44444))
+    server.settimeout(0.2)
 
-message = b"your very important message" * 1
+    server.bind(("", 44444))
 
-while True:
-    pickled = pickle.dumps(current_state_dict.get_current_state_dict())
+    message = b"your very important message" * 1
 
-    # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
-    server.sendto(message, ('<broadcast>', 37020))
-    server.sendto(pickled, ('<broadcast>', 37021))
+    while True:
+        local_state_dict = current_state_dict.get_current_state_dict()
+        pickled = pickle.dumps(local_state_dict)
 
-    print("message sent!")
+        # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
+        # server.sendto(message, ('<broadcast>', 37020))
+        server.sendto(pickled, ('<broadcast>', 37021))
 
-    time.sleep(0.7)
+        print(local_state_dict)
+
+        time.sleep(0.7)
+
+
+def recv_config():
+    pass
+
+
+if __name__ == '__main__':
+    p1 = Process(target=controller)
+    p2 = Process(target=recv_config)
+    p1.start()
+    p2.start()
+    p1.join()
+    p2.join()
