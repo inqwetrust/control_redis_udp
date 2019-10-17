@@ -1,3 +1,5 @@
+import traceback
+
 import pyperclip
 import pickle
 import socket
@@ -61,4 +63,4 @@ while True:
         print(change_result)
         last_state_dict = state_dict
     except:
-        pass
+        print(traceback.format_exc())
