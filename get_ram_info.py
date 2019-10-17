@@ -12,6 +12,7 @@ def get_ram_info():
             result += str(line)
         if not line:
             break
+    result = [result.count("{}".format(ram * 1024 * 1048576)) for ram in range(1, 32 + 1, 1)]
     return result
 
 
