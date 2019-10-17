@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 # import datetime
 import qrcode
 
+import current_state_dict
 
 def set_wallpaper(message):
     drive = "D:\\"
@@ -19,21 +20,23 @@ def set_wallpaper(message):
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=9,
+        box_size=4,
         border=1,
     )
     img = Image.new('RGB', screen_size, color=(73, 109, 137))
     d = ImageDraw.Draw(img)
     # now = datetime.datetime.now().isoformat()
-    d.text((1400, 10), message, fill=(255, 255, 0))
+    d.text((screen_size[0] - 400, 10), message, fill=(255, 255, 0))
     qr.add_data('{}'.format(message))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
-    img.paste(qr_code_img, (1200, 50))
+    pixel_size = qr_code_img.pixel_size
+    img.paste(qr_code_img, (screen_size[0] - pixel_size - 150, 50))
     img.save(image_path)
     windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, 3)
     pass
 
 
 if __name__ == '__main__':
-    set_wallpaper("test")
+    local_state_dict = current_state_dict.get_current_state_dict()
+    set_wallpaper(local_state_dict)
