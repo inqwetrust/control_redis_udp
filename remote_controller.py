@@ -42,7 +42,7 @@ while True:
     if change_result["get_read_text_line"] == False:  # action
         print("SEND PASTE:", state_dict["get_read_text_line"])
 
-    pickled = pickle.dumps(local_state_dict)
+    pickled = pickle.dumps(state_dict)
 
     # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
     # server.sendto(message, ('<broadcast>', 37020))
