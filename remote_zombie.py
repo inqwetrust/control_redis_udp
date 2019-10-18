@@ -60,7 +60,7 @@ while True:
             pyperclip.copy(text_list[random.randint(0, 99)])
             pyautogui.hotkey('ctrl', 'v')
 
-        print(change_result)
+        # print(change_result)
         last_state_dict = state_dict
     except:
         print(traceback.format_exc())

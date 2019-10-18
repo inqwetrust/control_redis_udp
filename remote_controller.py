@@ -18,12 +18,13 @@ server.bind(("", 44444))
 message = b"your very important message" * 1
 
 while True:
-    pickled = pickle.dumps(current_state_dict.get_current_state_dict())
+    local_state_dict = current_state_dict.get_current_state_dict()
+    pickled = pickle.dumps(local_state_dict)
 
     # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
     server.sendto(message, ('<broadcast>', 37020))
     server.sendto(pickled, ('<broadcast>', 37021))
 
-    print("message sent!")
+    print(local_state_dict)
 
     time.sleep(0.7)
