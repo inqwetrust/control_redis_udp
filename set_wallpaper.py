@@ -29,8 +29,7 @@ def set_wallpaper(message):
     img = Image.new('RGB', screen_size, color=(73, 109, 137))
     d = ImageDraw.Draw(img)
     # now = datetime.datetime.now().isoformat()
-    d.text((10, 10), '{}'.format(message), fill=(255, 255, 0))
-    d.text((10, 30), '{}'.format(message)[-150:], fill=(255, 255, 0))
+    d.text((screen_size[0] - 960, 10), '{}'.format(message), fill=(255, 255, 0))
     qr.add_data('{}'.format(message))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
@@ -43,4 +42,12 @@ def set_wallpaper(message):
 
 if __name__ == '__main__':
     local_state_dict = current_state_dict.get_current_state_dict()
-    set_wallpaper(local_state_dict)
+    print(local_state_dict)
+    info_list = []
+    info_list.append(local_state_dict["cpu"])
+    info_list.append(local_state_dict["ram"])
+    info_list.append(local_state_dict["disk"])
+    info_list.append(local_state_dict["get_mac_addr"])
+    info_list.append(local_state_dict["get_server_ip"])
+    info_list.append(local_state_dict["display"])
+    set_wallpaper(info_list)
