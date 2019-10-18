@@ -22,7 +22,7 @@ while True:
     pickled = pickle.dumps(local_state_dict)
 
     # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
-    server.sendto(message, ('<broadcast>', 37020))
+    # server.sendto(message, ('<broadcast>', 37020))
     server.sendto(pickled, ('<broadcast>', 37021))
 
     print(local_state_dict)
