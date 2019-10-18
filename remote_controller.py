@@ -18,7 +18,7 @@ server.bind(("", 44444))
 message = b"your very important message" * 1
 last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
-
+print(local_state_dict)
 while True:
     state_dict = current_state_dict.get_current_state_dict()
     change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
