@@ -7,7 +7,9 @@ from PIL import Image, ImageDraw, ImageFont
 import qrcode
 
 import current_state_dict
+
 dir_path = os.path.dirname(os.path.realpath(__file__))
+
 
 def set_wallpaper(message):
     drive = "C:\\"
