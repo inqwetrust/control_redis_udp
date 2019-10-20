@@ -4,3 +4,4 @@ pyautogui
 pyinstaller
 py-cpuinfo
 qrcode
+pywin32
