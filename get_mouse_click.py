@@ -10,6 +10,10 @@ def get_left_click():
 
 
 if __name__ == '__main__':
+    last_state = get_left_click()
     while True:
-        print(get_left_click())
-        time.sleep(1)
+        state = get_left_click()
+        if state != last_state:
+            print(get_left_click())
+        # time.sleep(1)
+        last_state = state
