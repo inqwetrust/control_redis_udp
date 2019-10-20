@@ -52,4 +52,4 @@ while True:
 
     last_state_dict = state_dict
 
-    time.sleep(0.7)
+    # time.sleep(0.7)
