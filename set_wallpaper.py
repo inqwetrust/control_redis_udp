@@ -52,5 +52,5 @@ if __name__ == '__main__':
     info_list.append(local_state_dict["display"])
     info_list = ['{}'.format(i) for i in info_list]
     info_list = "|".join(info_list)
-    # print(info_list)
+    print(info_list)
     set_wallpaper(info_list)
