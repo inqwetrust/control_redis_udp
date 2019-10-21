@@ -1,3 +1,4 @@
+import pickle
 import socket
 import traceback
 
@@ -7,6 +8,8 @@ client.bind(("", 37020))
 while True:
     try:
         data, addr = client.recvfrom(10240)
-        print("received message:{}".format(data))
+        state_dict = pickle.loads(data)
+
+        print("received message:{}".format(state_dict))
     except:
         print(traceback.format_exc())
