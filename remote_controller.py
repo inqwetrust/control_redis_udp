@@ -27,13 +27,13 @@ while True:
     elif change_result["key_caplock_on"] == False:  # action
         print("CAPSLOCK:", state_dict["key_caplock_on"])
     elif change_result["key_scrolllock_on"] == False:  # action
-        print("SCROLLLOCK:", state_dict["key_scrolllock_on"])
+        print("Left Click:", state_dict["key_scrolllock_on"])
         if state_dict["key_scrolllock_on"]:
             print("SEND MOUSE DOWN")
         else:
             print("SEND MOUSE UP")
     elif change_result["key_numlock_on"] == False:  # action
-        print("NUMLOCK:", state_dict["key_numlock_on"])
+        print("Right Click:", state_dict["key_numlock_on"])
         if state_dict["key_numlock_on"]:
             print("SEND MOUSE DOWN (Right)")
         else:

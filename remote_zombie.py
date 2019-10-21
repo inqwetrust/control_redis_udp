@@ -41,7 +41,7 @@ while True:
         if change_result["key_caplock_on"] == False:  # action
             print("CAPSLOCK:", state_dict["key_caplock_on"])
         if change_result["key_scrolllock_on"] == False:  # action
-            print("SCROLLLOCK:", state_dict["key_scrolllock_on"])
+            print("Left Click:", state_dict["key_scrolllock_on"])
             if state_dict["key_scrolllock_on"]:
                 pyautogui.mouseDown()
                 print("RECV: MOUSE DOWN")
@@ -49,7 +49,7 @@ while True:
                 pyautogui.mouseUp()
                 print("RECV: MOUSE UP")
         if change_result["key_numlock_on"] == False:  # action
-            print("NUMLOCK:", state_dict["key_numlock_on"])
+            print("Right Click:", state_dict["key_numlock_on"])
             if state_dict["key_numlock_on"]:
                 pyautogui.mouseDown(button='right')
                 print("RECV: MOUSE DOWN (right)")

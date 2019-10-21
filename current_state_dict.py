@@ -4,7 +4,7 @@ import get_local_ip
 import get_mac_addr
 import get_key_state
 import get_read_text_line
-
+import get_mouse_click
 import get_cpu_model
 import get_ram_info
 import get_disk_info
@@ -23,12 +23,20 @@ def get_current_state_dict():
     state_dict["get_server_ip"] = get_local_ip.get_local_ip()
     state_dict["get_server_subnet"] = get_local_ip.get_local_subnet()
     state_dict["get_mac_addr"] = get_mac_addr.get_mac_addr()
+    click_state = get_mouse_click.get_click_state()
     state_dict["key_caplock_on"] = get_key_state.get_caplock_state() == 1
     state_dict["key_caplock_off"] = get_key_state.get_caplock_state() == 0
-    state_dict["key_scrolllock_on"] = get_key_state.get_scrolllock_state() == 1
-    state_dict["key_scrolllock_off"] = get_key_state.get_scrolllock_state() == 0
+
+    # state_dict["key_scrolllock_on"] = get_key_state.get_scrolllock_state() == 1
+    state_dict["key_scrolllock_on"] = click_state[0] == -127 or click_state[0] == -128
+    # state_dict["key_scrolllock_off"] = get_key_state.get_scrolllock_state() == 0
+    state_dict["key_scrolllock_on"] = click_state[0] == 0 or click_state[0] == 1
+
     state_dict["key_numlock_on"] = get_key_state.get_numlock_state() == 1
+    state_dict["key_numlock_on"] = click_state[1] == -127 or click_state[1] == -128
     state_dict["key_numlock_off"] = get_key_state.get_numlock_state() == 0
+    state_dict["key_numlock_off"] = click_state[1] == 0 or click_state[1] == 1
+
     state_dict["get_read_text_line"] = get_read_text_line.get_read_text_line()
 
     state_dict["cpu"] = cpu
