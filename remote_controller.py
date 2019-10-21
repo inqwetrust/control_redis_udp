@@ -1,3 +1,4 @@
+import datetime
 import pickle
 import socket
 import current_state_dict
@@ -19,11 +20,16 @@ message = b"your very important message" * 1
 last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
 print(local_state_dict)
+time_moved = datetime.datetime.now()
 while True:
     state_dict = current_state_dict.get_current_state_dict()
     change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
     if change_result["get_cursor_pos"] == False and state_dict["key_caplock_on"]:  # action
-        print("mouse moved", state_dict["get_cursor_pos"])
+        if datetime.datetime.now() > time_moved:
+            print("mouse moved", state_dict["get_cursor_pos"])
+            time_moved = datetime.datetime.now() + datetime.timedelta(seconds=1)
+        else:
+            state_dict["get_cursor_pos"] = last_state_dict["get_cursor_pos"]
     elif change_result["key_caplock_on"] == False:  # action
         print("CAPSLOCK:", state_dict["key_caplock_on"])
     elif change_result["key_scrolllock_on"] == False:  # action
