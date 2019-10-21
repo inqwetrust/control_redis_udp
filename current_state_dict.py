@@ -30,11 +30,11 @@ def get_current_state_dict():
     # state_dict["key_scrolllock_on"] = get_key_state.get_scrolllock_state() == 1
     state_dict["key_scrolllock_on"] = click_state[0] == -127 or click_state[0] == -128
     # state_dict["key_scrolllock_off"] = get_key_state.get_scrolllock_state() == 0
-    state_dict["key_scrolllock_on"] = click_state[0] == 0 or click_state[0] == 1
+    state_dict["key_scrolllock_off"] = click_state[0] == 0 or click_state[0] == 1
 
-    state_dict["key_numlock_on"] = get_key_state.get_numlock_state() == 1
+    # state_dict["key_numlock_on"] = get_key_state.get_numlock_state() == 1
     state_dict["key_numlock_on"] = click_state[1] == -127 or click_state[1] == -128
-    state_dict["key_numlock_off"] = get_key_state.get_numlock_state() == 0
+    # state_dict["key_numlock_off"] = get_key_state.get_numlock_state() == 0
     state_dict["key_numlock_off"] = click_state[1] == 0 or click_state[1] == 1
 
     state_dict["get_read_text_line"] = get_read_text_line.get_read_text_line()
