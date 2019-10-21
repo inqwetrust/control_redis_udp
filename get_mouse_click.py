@@ -1,6 +1,6 @@
 # from win32ctypes.pywin32 import win32api
 import win32api
-import time
+# import time
 
 
 def get_click_state():
