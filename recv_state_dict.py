@@ -12,7 +12,7 @@ while True:
     try:
         data, addr = client.recvfrom(10240)
         state_dict = pickle.loads(data)
-        collected_state_dict[state_dict["get_uuid"]] = state_dict
+        # collected_state_dict[state_dict["get_uuid"]] = state_dict
         collected_state_dict[state_dict["get_server_ip"]] = state_dict
         df = DataFrame(collected_state_dict)
         df.to_html('out.html')
