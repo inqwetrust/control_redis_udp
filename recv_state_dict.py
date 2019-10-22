@@ -15,7 +15,7 @@ while True:
         # collected_state_dict[state_dict["get_uuid"]] = state_dict
         collected_state_dict[state_dict["get_server_ip"]] = state_dict
         df = DataFrame(collected_state_dict)
-        df.to_html('out.html')
+        df.to_html('status_report.html')
         print("received message:{}".format(state_dict))
     except:
         print(traceback.format_exc())
