@@ -10,13 +10,14 @@ import get_ram_info
 import get_disk_info
 import get_display
 import get_display_card
+import datetime
 
 cpu = get_cpu_model.get_cpu_brand()
 ram = get_ram_info.get_ram_info()
 disk = get_disk_info.get_disk_info()
 display = get_display.get_display()
 display_card = get_display_card.get_display_card()
-
+start_time = datetime.datetime.now().isoformat()
 
 def get_current_state_dict():
     state_dict = {}
@@ -46,6 +47,8 @@ def get_current_state_dict():
     state_dict["disk"] = disk
     state_dict["display"] = display
     state_dict["display_card"] = display_card
+    state_dict["start_time"] = start_time
+    state_dict["last_update_time"] = datetime.datetime.now().isoformat()
 
     return state_dict
 
