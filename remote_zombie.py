@@ -25,7 +25,7 @@ server.settimeout(0.01)
 server.bind(("", 44444))
 pickled = pickle.dumps(local_state_dict)
 server.sendto(pickled, ('<broadcast>', 37020))
-
+udp_recv_count = 0
 while True:
     # hash = random.randint(0, 100)
     try:
@@ -68,9 +68,10 @@ while True:
             pyautogui.hotkey('ctrl', 'v')
 
         # print(change_result)
-        pickled = pickle.dumps(state_dict)
-        server.sendto(pickled, ('<broadcast>', 37020))
-
+        if udp_recv_count % 25 == 0:
+            pickled = pickle.dumps(state_dict)
+            server.sendto(pickled, ('<broadcast>', 37020))
+        udp_recv_count += 1
         last_state_dict = state_dict
     except:
         print(traceback.format_exc())
