@@ -53,7 +53,6 @@ while True:
     pickled = pickle.dumps(state_dict)
 
     # pickle.loads(codecs.decode(pickled.encode(), 'base64')).decode()
-    # server.sendto(message, ('<broadcast>', 37020))
     server.sendto(pickled, ('<broadcast>', 37021))
 
     last_state_dict = state_dict
