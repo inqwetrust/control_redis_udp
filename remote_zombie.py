@@ -18,11 +18,13 @@ last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
 print(local_state_dict)
 
-#send back config
+# send back config
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 server.settimeout(0.01)
 server.bind(("", 44444))
+pickled = pickle.dumps(local_state_dict)
+server.sendto(pickled, ('<broadcast>', 37020))
 
 while True:
     # hash = random.randint(0, 100)
