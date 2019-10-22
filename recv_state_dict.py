@@ -14,6 +14,7 @@ while True:
         state_dict = pickle.loads(data)
         # collected_state_dict[state_dict["get_uuid"]] = state_dict
         collected_state_dict[state_dict["get_server_ip"]] = state_dict
+        collected_state_dict = [v for k, v in collected_state_dict.items()]
         df = DataFrame(collected_state_dict)
         df.to_html('status_report.html')
         print("received message:{}".format(state_dict))
