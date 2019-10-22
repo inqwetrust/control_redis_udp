@@ -19,6 +19,7 @@ display = get_display.get_display()
 display_card = get_display_card.get_display_card()
 start_time = datetime.datetime.now().isoformat()
 
+
 def get_current_state_dict():
     state_dict = {}
     state_dict["get_uuid"] = get_uuid.get_uuid()
