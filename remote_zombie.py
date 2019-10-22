@@ -22,7 +22,7 @@ print(local_state_dict)
 server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 server.settimeout(0.01)
-server.bind(("", 44444))
+server.bind(("", 44443))
 pickled = pickle.dumps(local_state_dict)
 server.sendto(pickled, ('<broadcast>', 37020))
 udp_recv_count = 0
