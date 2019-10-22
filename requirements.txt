@@ -5,3 +5,4 @@ pyinstaller
 py-cpuinfo
 qrcode
 pywin32
+pandas
