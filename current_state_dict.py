@@ -17,7 +17,7 @@ ram = get_ram_info.get_ram_info()
 disk = get_disk_info.get_disk_info()
 display = get_display.get_display()
 display_card = get_display_card.get_display_card()
-start_time = datetime.datetime.now().isoformat()
+start_time = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
 
 def get_current_state_dict():
@@ -49,7 +49,7 @@ def get_current_state_dict():
     state_dict["display"] = display
     state_dict["display_card"] = display_card
     state_dict["start_time"] = start_time
-    state_dict["last_update_time"] = datetime.datetime.now().isoformat()
+    state_dict["last_update_time"] = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
     return state_dict
 
