@@ -16,6 +16,8 @@ last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
 print(local_state_dict)
 time_moved = datetime.datetime.now()
+udp_recv_count = 0
+
 while True:
     state_dict = current_state_dict.get_current_state_dict()
     change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
@@ -42,6 +44,8 @@ while True:
 
     elif change_result["get_read_text_line"] == False:  # action
         print("SEND PASTE:", state_dict["get_read_text_line"])
+    elif udp_recv_count % 25 == 0:
+        pass
     else:
         last_state_dict = state_dict
         continue
@@ -51,5 +55,6 @@ while True:
     server.sendto(pickled, ('<broadcast>', 37021))
 
     last_state_dict = state_dict
+    udp_recv_count += 1
 
     # time.sleep(0.7)
