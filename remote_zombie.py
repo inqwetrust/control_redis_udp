@@ -12,7 +12,7 @@ pyautogui.FAILSAFE = False
 client2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 
 client2.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-
+client2.settimeout(1)
 client2.bind(("", 37021))
 last_state_dict = current_state_dict.get_current_state_dict()
 local_state_dict = last_state_dict
@@ -29,11 +29,7 @@ udp_recv_count = 0
 while True:
     # hash = random.randint(0, 100)
     try:
-        udp_recv_count += 1
-        if udp_recv_count % 250 == 0:
-            last_state_dict = current_state_dict.get_current_state_dict()
-            pickled = pickle.dumps(last_state_dict)
-            server.sendto(pickled, ('<broadcast>', 37020))
+        # if True:
         data, addr = client2.recvfrom(10240)
         state_dict = pickle.loads(data)
         change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
@@ -74,5 +70,13 @@ while True:
 
         # print(change_result)
         last_state_dict = state_dict
+    except socket.timeout:
+        udp_recv_count += 1
+        if udp_recv_count % 25 == 0:
+            last_state_dict = current_state_dict.get_current_state_dict()
+            pickled = pickle.dumps(last_state_dict)
+            server.sendto(pickled, ('<broadcast>', 37020))
+
+        pass
     except:
         print(traceback.format_exc())
