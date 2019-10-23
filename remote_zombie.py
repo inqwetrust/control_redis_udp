@@ -36,6 +36,7 @@ while True:
         if last_state_dict["get_uuid"] == state_dict["get_uuid"]:
             continue
         if local_state_dict["display"] != state_dict["display"]:
+            local_state_dict = current_state_dict.get_current_state_dict()
             continue
         if local_state_dict["get_server_ip"] == last_state_dict["get_server_ip"] and False:  # False = ignore checking
             continue
