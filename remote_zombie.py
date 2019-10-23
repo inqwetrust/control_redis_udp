@@ -30,6 +30,10 @@ while True:
     # hash = random.randint(0, 100)
     try:
         udp_recv_count += 1
+        if udp_recv_count % 250 == 0:
+            last_state_dict = current_state_dict.get_current_state_dict()
+            pickled = pickle.dumps(last_state_dict)
+            server.sendto(pickled, ('<broadcast>', 37020))
         data, addr = client2.recvfrom(10240)
         state_dict = pickle.loads(data)
         change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
@@ -69,10 +73,6 @@ while True:
             pyautogui.hotkey('ctrl', 'v')
 
         # print(change_result)
-        if udp_recv_count % 250 == 0:
-            last_state_dict = current_state_dict.get_current_state_dict()
-            pickled = pickle.dumps(last_state_dict)
-            server.sendto(pickled, ('<broadcast>', 37020))
         last_state_dict = state_dict
     except:
         print(traceback.format_exc())
