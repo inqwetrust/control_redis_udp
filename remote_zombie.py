@@ -35,6 +35,8 @@ while True:
         change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
         if last_state_dict["get_uuid"] == state_dict["get_uuid"]:
             continue
+        if local_state_dict["display"] != state_dict["display"]:
+            continue
         if local_state_dict["get_server_ip"] == last_state_dict["get_server_ip"] and False:  # False = ignore checking
             continue
         if local_state_dict["get_server_subnet"] != state_dict["get_server_subnet"]:
@@ -72,11 +74,10 @@ while True:
         last_state_dict = state_dict
     except socket.timeout:
         udp_recv_count += 1
-        if udp_recv_count % 25 == 0:
-            last_state_dict = current_state_dict.get_current_state_dict()
-            pickled = pickle.dumps(last_state_dict)
+        if udp_recv_count % 20 == 0:
+            local_state_dict = current_state_dict.get_current_state_dict()
+            pickled = pickle.dumps(local_state_dict)
             server.sendto(pickled, ('<broadcast>', 37020))
-
         pass
     except:
         print(traceback.format_exc())
