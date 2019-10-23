@@ -48,6 +48,7 @@ while True:
         pass
     else:
         last_state_dict = state_dict
+        udp_recv_count += 1
         continue
     pickled = pickle.dumps(state_dict)
 
