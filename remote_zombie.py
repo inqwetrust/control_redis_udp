@@ -29,6 +29,7 @@ udp_recv_count = 0
 while True:
     # hash = random.randint(0, 100)
     try:
+        udp_recv_count += 1
         data, addr = client2.recvfrom(10240)
         state_dict = pickle.loads(data)
         change_result = current_state_dict.compare_state_dict(last_state_dict, state_dict)
@@ -69,9 +70,9 @@ while True:
 
         # print(change_result)
         if udp_recv_count % 250 == 0:
-            pickled = pickle.dumps(state_dict)
+            last_state_dict = current_state_dict.get_current_state_dict()
+            pickled = pickle.dumps(last_state_dict)
             server.sendto(pickled, ('<broadcast>', 37020))
-        udp_recv_count += 1
         last_state_dict = state_dict
     except:
         print(traceback.format_exc())
