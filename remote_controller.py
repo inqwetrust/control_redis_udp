@@ -44,7 +44,7 @@ while True:
 
     elif change_result["get_read_text_line"] == False:  # action
         print("SEND PASTE:", state_dict["get_read_text_line"])
-    elif udp_recv_count % 25 == 0:
+    elif udp_recv_count % 2500 == 0:
         pass
     else:
         last_state_dict = state_dict
