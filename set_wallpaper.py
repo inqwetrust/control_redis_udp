@@ -36,7 +36,9 @@ def set_wallpaper(message):
     pixel_size = qr_code_img.pixel_size
     img.paste(qr_code_img, (screen_size[0] - pixel_size - 150, 50))
     img.save(image_path)
-    windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, 3)
+    SPIF_UPDATEINIFILE = 0x2  # forces instant update
+    windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, SPIF_UPDATEINIFILE)
+    # windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, 3)
     pass
 
 
