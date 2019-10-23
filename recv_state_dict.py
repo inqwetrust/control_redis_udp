@@ -27,7 +27,13 @@ while True:
         df = df.drop('key_numlock_off', 1)
         df = df.drop('get_read_text_line', 1)
         df = df.drop('start_time', 1)
-        df.to_html('status_report.html', index=False)
+        f = open('status_report.html', mode='w')
+        html = '''<head>
+  <meta http-equiv="refresh" content="1">
+</head>'''
+        html += df.to_html(index=False)
+        f.write(html)
+        f.close()
         print("received message:{}".format(state_dict))
     except:
         print(traceback.format_exc())
