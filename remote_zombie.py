@@ -68,7 +68,7 @@ while True:
             pyautogui.hotkey('ctrl', 'v')
 
         # print(change_result)
-        if udp_recv_count % 25 == 0:
+        if udp_recv_count % 250 == 0:
             pickled = pickle.dumps(state_dict)
             server.sendto(pickled, ('<broadcast>', 37020))
         udp_recv_count += 1
