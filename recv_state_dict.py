@@ -29,7 +29,7 @@ while True:
         df = df.drop('start_time', 1)
         f = open('status_report.html', mode='w')
         html = '''<head>
-  <meta http-equiv="refresh" content="1">
+  <meta http-equiv="refresh" content="5">
 </head>'''
         html += df.to_html(index=False)
         f.write(html)
