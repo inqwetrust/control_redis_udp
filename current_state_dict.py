@@ -46,9 +46,8 @@ def get_current_state_dict():
     state_dict["cpu"] = cpu
     state_dict["ram"] = ram
     state_dict["disk"] = disk
-    state_dict["display"] = display
-    # state_dict["display_card"] = display_card
-    state_dict["display_card"] = get_display.get_display()
+    state_dict["display"] = get_display.get_display()
+    state_dict["display_card"] = display_card
     state_dict["start_time"] = start_time
     state_dict["last_update_time"] = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 
