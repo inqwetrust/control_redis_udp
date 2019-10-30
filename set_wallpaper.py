@@ -42,7 +42,7 @@ def set_wallpaper(message):
     pass
 
 
-if __name__ == '__main__':
+def main():
     local_state_dict = current_state_dict.get_current_state_dict()
     print(local_state_dict)
     info_list = []
@@ -57,3 +57,7 @@ if __name__ == '__main__':
     info_list = "|".join(info_list)
     print(info_list)
     set_wallpaper(info_list)
+
+
+if __name__ == '__main__':
+    main()
