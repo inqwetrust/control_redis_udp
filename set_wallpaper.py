@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 import qrcode
 
 import current_state_dict
-
+font = ImageFont.truetype('simsun.ttc',24)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -30,14 +30,15 @@ def set_wallpaper(message):
     img = Image.new('RGB', screen_size, color=(73, 109, 137))
     d = ImageDraw.Draw(img)
     # now = datetime.datetime.now().isoformat()
+    d.text((screen_size[0] - 960, 80), '{}'.format("硬體配置"), fill=(255, 255, 0), font=font)
     msg_list = message.split("|")
     for msg in msg_list:
-        d.text((screen_size[0] - 960, 30 + 30 * msg_list.index(msg)), '{}'.format(msg), fill=(255, 255, 0))
+        d.text((screen_size[0] - 960, 110 + 30 * msg_list.index(msg)), '{}'.format(msg), fill=(255, 255, 0), font=font)
     qr.add_data('{}'.format(message))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
     pixel_size = qr_code_img.pixel_size
-    img.paste(qr_code_img, (screen_size[0] - pixel_size - randint(200, 250), randint(100, 150)))
+    img.paste(qr_code_img, (screen_size[0] - pixel_size - randint(200, 210), randint(80, 90)))
     img.save(image_path)
     SPIF_UPDATEINIFILE = 0x2  # forces instant update
     windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, SPIF_UPDATEINIFILE)
