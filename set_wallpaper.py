@@ -47,20 +47,20 @@ def set_wallpaper(message):
 
 
 def main():
-    local_state_dict = current_state_dict.get_current_state_dict()
-    print(local_state_dict)
-    info_list = []
-    info_list.append(local_state_dict["cpu"])
-    info_list.append(local_state_dict["ram"])
-    info_list.append(local_state_dict["disk"])
-    info_list.append(local_state_dict["get_mac_addr"])
-    info_list.append(local_state_dict["get_server_ip"])
-    info_list.append(local_state_dict["display"])
-    info_list.append(local_state_dict["display_card"])
-    info_list = ['{}'.format(i) for i in info_list]
-    info_list = "|".join(info_list)
-    print(info_list)
     while True:
+        local_state_dict = current_state_dict.get_current_state_dict()
+        # print(local_state_dict)
+        info_list = []
+        info_list.append(local_state_dict["cpu"])
+        info_list.append(local_state_dict["ram"])
+        info_list.append(local_state_dict["disk"])
+        info_list.append(local_state_dict["get_mac_addr"])
+        info_list.append(local_state_dict["get_server_ip"])
+        info_list.append(local_state_dict["display"])
+        info_list.append(local_state_dict["display_card"])
+        info_list = ['{}'.format(i) for i in info_list]
+        info_list = "|".join(info_list)
+        print(info_list)
         set_wallpaper(info_list)
         time.sleep(1)
 
