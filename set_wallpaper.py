@@ -1,5 +1,6 @@
+import time
 from ctypes import *
-
+from random import randint
 windll = windll.LoadLibrary('user32')
 import os
 from PIL import Image, ImageDraw, ImageFont
@@ -34,7 +35,7 @@ def set_wallpaper(message):
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
     pixel_size = qr_code_img.pixel_size
-    img.paste(qr_code_img, (screen_size[0] - pixel_size - 150, 50))
+    img.paste(qr_code_img, (screen_size[0] - pixel_size - randint(200, 250), randint(100, 150)))
     img.save(image_path)
     SPIF_UPDATEINIFILE = 0x2  # forces instant update
     windll.SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, image_path, SPIF_UPDATEINIFILE)
@@ -56,7 +57,9 @@ def main():
     info_list = ['{}'.format(i) for i in info_list]
     info_list = "|".join(info_list)
     print(info_list)
-    set_wallpaper(info_list)
+    while True:
+        set_wallpaper(info_list)
+        time.sleep(1)
 
 
 if __name__ == '__main__':
