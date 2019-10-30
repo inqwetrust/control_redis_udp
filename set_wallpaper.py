@@ -30,7 +30,9 @@ def set_wallpaper(message):
     img = Image.new('RGB', screen_size, color=(73, 109, 137))
     d = ImageDraw.Draw(img)
     # now = datetime.datetime.now().isoformat()
-    d.text((screen_size[0] - 960, 10), '{}'.format(message), fill=(255, 255, 0))
+    msg_list = message.split("|")
+    for msg in msg_list:
+        d.text((screen_size[0] - 960, 30 + 30 * msg_list.index(msg)), '{}'.format(msg), fill=(255, 255, 0))
     qr.add_data('{}'.format(message))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
