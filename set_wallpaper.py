@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 import qrcode
 
 import current_state_dict
-font = ImageFont.truetype('simsun.ttc',24)
+font = ImageFont.truetype('NotoSansTC-Regular.otf',24)
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 

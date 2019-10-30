@@ -6,3 +6,4 @@ pyinstaller -F remote_zombie.py
 pyinstaller -F set_wallpaper.py
 pyinstaller -F recv_state_dict.py
 copy text_list.txt dist\
+copy NotoSansTC-Regular.otf dist\
