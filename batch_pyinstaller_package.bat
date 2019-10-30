@@ -7,3 +7,5 @@ pyinstaller -F set_wallpaper.py
 pyinstaller -F recv_state_dict.py
 copy text_list.txt dist\
 copy NotoSansTC-Regular.otf dist\
+copy room1_mac.csv dist\
+copy room2_mac.csv dist\

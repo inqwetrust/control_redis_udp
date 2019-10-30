@@ -14,7 +14,7 @@ def read_file(filename):
             port = row[1]
             port = port.split('/')
             port = port[-1]
-            mac_dict[mac] = {"port": port, "room": filename[:5]}
+            mac_dict[mac] = {"room": filename[:5], "port": port}
     pass
 
 
