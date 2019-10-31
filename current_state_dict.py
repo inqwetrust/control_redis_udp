@@ -11,6 +11,7 @@ import get_disk_info
 import get_display
 import get_display_card
 import datetime
+import get_mac_csv
 
 cpu = get_cpu_model.get_cpu_brand()
 ram = get_ram_info.get_ram_info()
@@ -18,6 +19,7 @@ disk = get_disk_info.get_disk_info()
 display = get_display.get_display()
 display_card = get_display_card.get_display_card()
 start_time = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+mac_csv = get_mac_csv.get_mac_csv()
 
 
 def get_current_state_dict():
@@ -27,6 +29,11 @@ def get_current_state_dict():
     state_dict["get_server_ip"] = get_local_ip.get_local_ip()
     state_dict["get_server_subnet"] = get_local_ip.get_local_subnet()
     state_dict["get_mac_addr"] = get_mac_addr.get_mac_addr()
+    if state_dict["get_mac_addr"] in mac_csv:
+        state_dict["port_info"] = mac_csv[state_dict["get_mac_addr"]]
+    else:
+        state_dict["port_info"] = {"room": "room0", "port": 0}
+
     click_state = get_mouse_click.get_click_state()
     state_dict["key_caplock_on"] = get_key_state.get_caplock_state() == 1
     state_dict["key_caplock_off"] = get_key_state.get_caplock_state() == 0

@@ -1,4 +1,3 @@
-import get_mac_csv
 import time
 from ctypes import *
 from random import randint
@@ -50,7 +49,6 @@ def set_wallpaper(message):
 
 
 def main():
-    mac_csv = get_mac_csv.get_mac_csv()
     while True:
         local_state_dict = current_state_dict.get_current_state_dict()
         # print(local_state_dict)
@@ -62,8 +60,7 @@ def main():
         info_list.append(local_state_dict["get_server_ip"])
         info_list.append(local_state_dict["display"])
         info_list.append(local_state_dict["display_card"])
-        port_info = mac_csv[local_state_dict["get_mac_addr"]]
-        info_list.append(port_info)
+        info_list.append(local_state_dict["port_info"])
         info_list = ['{}'.format(i) for i in info_list]
         info_list = "|".join(info_list)
         print(info_list)
