@@ -19,10 +19,13 @@ def read_file(filename):
 
 
 def get_mac_csv():
-    filename = 'room1_mac.csv'
-    read_file(filename)
-    filename = 'room2_mac.csv'
-    read_file(filename)
+
+    filename = ['room{}_mac.csv'.format(n) for n in range(1, 6)]
+    for file in filename:
+        try:
+            read_file(file)
+        except:
+            pass
     return mac_dict
 
 
