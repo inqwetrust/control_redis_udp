@@ -9,3 +9,4 @@ copy text_list.txt dist\
 copy NotoSansTC-Regular.otf dist\
 copy room1_mac.csv dist\
 copy room2_mac.csv dist\
+copy pc_remarks.txt dist\
