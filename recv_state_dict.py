@@ -3,6 +3,7 @@ import socket
 import traceback
 # import pandas as pd
 from pandas import DataFrame
+import codecs
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -27,7 +28,7 @@ while True:
         df = df.drop('key_numlock_off', 1)
         df = df.drop('get_read_text_line', 1)
         df = df.drop('start_time', 1)
-        f = open('status_report.html', mode='w')
+        f = codecs.open('status_report.html', mode='w', encoding='utf-16')
         html = '''<head>
   <meta http-equiv="refresh" content="5">
 </head>'''
