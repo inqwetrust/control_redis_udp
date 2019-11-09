@@ -36,7 +36,7 @@ def set_wallpaper(message):
     msg_list = message.split("|")
     for msg in msg_list:
         d.text((screen_size[0] - 960, 110 + 30 * msg_list.index(msg)), '{}'.format(msg), fill=(255, 255, 0), font=font)
-    qr.add_data('{}'.format(message))
+    qr.add_data('{}'.format(message.encode('utf-8')))
     qr.make(fit=True)
     qr_code_img = qr.make_image(fill_color="black", back_color="white")
     pixel_size = qr_code_img.pixel_size
