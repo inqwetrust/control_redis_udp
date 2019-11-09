@@ -61,6 +61,7 @@ def main():
         info_list.append(local_state_dict["display"])
         info_list.append(local_state_dict["display_card"])
         info_list.append(local_state_dict["port_info"])
+        info_list.append(local_state_dict["pc_remarks"])
         info_list = ['{}'.format(i) for i in info_list]
         info_list = "|".join(info_list)
         print(info_list)
