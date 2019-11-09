@@ -71,8 +71,11 @@ while True:
             to_press = text_list[random.randint(0, 99)]
             if to_press == None:
                 break
-            pyperclip.copy(to_press)
-            pyautogui.hotkey('ctrl', 'v')
+            if to_press == '//enter':
+                pyautogui.press('return')
+            else:
+                pyperclip.copy(to_press)
+                pyautogui.hotkey('ctrl', 'v')
 
         # print(change_result)
         last_state_dict = state_dict
