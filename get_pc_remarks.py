@@ -4,17 +4,17 @@ pc_remarks_dict = {}
 
 
 def read_file(filename):
-    with open(filename, 'r') as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            mac = str(row[0])
-            mac = mac.replace('-', '')
-            mac = ':'.join([mac[i:i + 2] for i, j in enumerate(mac) if not (i % 2)])
-            mac = mac.upper()
-            port = row[1]
-            port = port.split('/')
-            port = port[-1]
-            pc_remarks_dict[mac] = {"room": filename[:5], "port": port}
+    with open(filename, 'rb') as csv_file:
+        csv_file = csv_file.read().decode('utf-16')
+    csv_file = csv_file.split('\n')
+    for line in csv_file:
+        items = line.split('\t')
+        if len(items) <= 1:
+            continue
+        room = items[0]
+        port = items[1]
+        remarks = [r.replace('\r', '') for r in items[2:]]
+        pc_remarks_dict[room + '_' + port] = {'remarks': remarks}
     pass
 
 
