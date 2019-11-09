@@ -68,7 +68,10 @@ while True:
             print("TEXT_LINE:", state_dict["get_read_text_line"])
             text_list = state_dict["get_read_text_line"]
             text_list = text_list * 100
-            pyperclip.copy(text_list[random.randint(0, 99)])
+            to_press = text_list[random.randint(0, 99)]
+            if to_press == None:
+                break
+            pyperclip.copy(to_press)
             pyautogui.hotkey('ctrl', 'v')
 
         # print(change_result)

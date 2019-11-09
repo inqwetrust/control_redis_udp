@@ -6,7 +6,7 @@ def get_read_text_line():
         f.close()
         return text_list
     except:
-        return [0]
+        return [None]
 
 
 if __name__ == '__main__':
