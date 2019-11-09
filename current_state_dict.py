@@ -12,6 +12,7 @@ import get_display
 import get_display_card
 import datetime
 import get_mac_csv
+import get_pc_remarks
 
 cpu = get_cpu_model.get_cpu_brand()
 ram = get_ram_info.get_ram_info()
@@ -20,6 +21,7 @@ display = get_display.get_display()
 display_card = get_display_card.get_display_card()
 start_time = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
 mac_csv = get_mac_csv.get_mac_csv()
+pc_remarks = get_pc_remarks.get_pc_remarks_csv()
 
 
 def get_current_state_dict():
@@ -33,7 +35,11 @@ def get_current_state_dict():
         state_dict["port_info"] = mac_csv[state_dict["get_mac_addr"]]
     else:
         state_dict["port_info"] = {"room": "room0", "port": 0}
-
+    room_port = '{}_{}'.format(state_dict["port_info"]["room"], state_dict["port_info"]["port"])
+    if room_port in pc_remarks:
+        state_dict["pc_remarks"] = pc_remarks[room_port]
+    else:
+        state_dict["pc_remarks"] = {'remarks': '0'}
     click_state = get_mouse_click.get_click_state()
     state_dict["key_caplock_on"] = get_key_state.get_caplock_state() == 1
     state_dict["key_caplock_off"] = get_key_state.get_caplock_state() == 0
@@ -57,7 +63,6 @@ def get_current_state_dict():
     state_dict["display_card"] = display_card
     state_dict["start_time"] = start_time
     state_dict["last_update_time"] = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
-
     return state_dict
 
 
@@ -76,6 +81,7 @@ if __name__ == '__main__':
     import time
 
     last_state_dict = get_current_state_dict()
+    print(last_state_dict)
     print("make change now")
     time.sleep(3)
     next_state_dict = get_current_state_dict()
