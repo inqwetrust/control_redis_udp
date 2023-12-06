@@ -1,7 +1,5 @@
 # import os
 import subprocess
-
-
 def get_disk_info():
     command = "wmic diskdrive get Size"
     pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
